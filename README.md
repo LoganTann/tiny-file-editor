@@ -4,7 +4,7 @@ BusyBox includes an HTTP daemon that can serve local files.
 
 Similar to most HTTP services like Apache or Nginx, it supports the [Common Gateway Interface (CGI)](https://fr.wikipedia.org/wiki/Common_Gateway_Interface), enabling server-side scripting capabilities.
 
-This means you now have a backend framework for Bash!
+This means you now have an easy-to-use backend framework for Bash, in under 5Mb. The same would require 300Mb by using Node.js.
 
 References : 
 - https://www.geekyhacker.com/bash-shell-cgi-http-server-using-busybox/
@@ -25,11 +25,11 @@ Start the web server
 ./start.sh
 ```
 
-In dev environments, you might need to install busybox (`sudo apt install busybox`).
+In dev environments, you need to install busybox (`sudo apt install busybox`).
 
 > [!CAUTION]
 > This is a proof of concept intended solely for personal use, to be exposed only in a private network.
 
-The CGI consists of creating a new shell process and passing HTTP data through environment variables or the stdin stream for each request. Which is painfully slow. (This is not the case with PHP since a single process handles the requests and stays alive.) 
+Our approach creates a new process and passes HTTP data through environment variables and the stdin stream for each request. Which is painfully slow. 
 
-Since we are spawning shells to handle requests, we have an ideal environment for vulnerabilities such as path traversal, code injection or DDOS 😀
+As we are spawning shells to handle requests, we have an ideal environment for vulnerabilities such as path traversal, code injection or DDOS 😀
